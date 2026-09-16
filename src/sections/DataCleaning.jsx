@@ -1,5 +1,4 @@
 import CodeDisclosure from "../components/CodeDisclosure.jsx";
-import Admonition from "../components/Admonition.jsx";
 import { MERGE_ROWS, SCRAPE_SCRIPT, getChapter } from "../data/content.js";
 
 const sub = (id) => getChapter("data").subsections.find((s) => s.id === id);

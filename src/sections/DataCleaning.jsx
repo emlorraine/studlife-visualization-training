@@ -47,8 +47,7 @@ export default function DataCleaning() {
       </h2>
       <p>
         While WUPD has a spreadsheet available for download, it isn't complete. The public log is, however, so I
-        wrote a small script that visited each page on its own, one at a time, pausing about a second in between so it
-        wasn't hammering the university's server. From every entry on every page, it pulled the same five pieces of
+        wrote a small script that visited each page on its own. From every entry on every page, it pulled the same five pieces of
         information: when the incident was reported, when it actually occurred, what type of incident it was, where
         it happened, and a short synopsis.
       </p>

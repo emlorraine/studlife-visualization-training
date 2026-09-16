@@ -27,12 +27,7 @@ export default function Home({ onNavigate }) {
     <article className="chapter">
       <h1>Building a Visual Story</h1>
       <p className="chapter-dek">
-        A workshop built from one dataset built from <a href="https://police.wustl.edu/clery-reports-log/crime-log/">WUPD's Clery Report crime log</a>. It walks from an overview to three Datawrapper
-        exercises: a bar chart, a timeline, and a bump chart. Nothing past the cleaning stage (see{" "}
-        <LinkJump chapter="data" onNavigate={onNavigate}>
-          Data &amp; Cleaning
-        </LinkJump>
-        ) requires writing any code.
+        We're going to build three interactives (a bar chart, a timeline, and a bump chart) using <a href="https://police.wustl.edu/clery-reports-log/crime-log/">WUPD's Clery Report crime log</a>.
       </p>
 
       <Admonition kind="note" title="Before you start">
@@ -43,7 +38,7 @@ export default function Home({ onNavigate }) {
           </li>
           <li>A spreadsheet tool: Google Sheets, Excel, or Numbers.</li>
           <li>
-            The cleaned <code className="mono">cleaned.csv</code> and each exercise's data file, all in the GitHub
+            The cleaned <code className="mono">cleaned.csv</code> dataset for reference and each exercise's data file, all in the GitHub
             repo (linked below and in <LinkJump chapter="data" onNavigate={onNavigate}>Data &amp; Cleaning</LinkJump>).
           </li>
         </ul>
@@ -53,8 +48,7 @@ export default function Home({ onNavigate }) {
         {sub("pitch-statement").title}
       </h2>
       <p>
-        <strong>I'm proposing an interactive story built from WUPD's Clery Act crime log</strong>: three linked
-        Datawrapper visuals. Each one answers a question the last one raises, walking a campus reader from "what
+        <strong>I'm proposing an interactive story built from WUPD's Clery Act crime log</strong>. Each interactive built for the story will answer a question the last one raises, walking a campus reader from "what
         gets reported" to "when" to "which locations."
       </p>
       <p>
@@ -62,7 +56,7 @@ export default function Home({ onNavigate }) {
         <LinkJump chapter="data" subsection="background" onNavigate={onNavigate}>
           Data &amp; Cleaning
         </LinkJump>{" "}
-        for how I scraped and deduped it. Nothing below requires touching the raw file again.
+        for how I scraped and deduped it.
       </p>
 
       <h2 id={sub("exercise-1").id}>
@@ -72,23 +66,23 @@ export default function Home({ onNavigate }) {
         "What gets reported to WUPD more than anything else, and how does everything else compare?"
       </p>
       <p>
-        The simplest chart in Datawrapper that can carry a finding. This is the control group for the two builds
+        Let's start with a simple bar chart to tally the incidents reported by type. This is the control group for the two builds
         after it.
       </p>
       <h3>Data needed</h3>
       <p>
         A summary table: one row per bucketed incident type (the same eight types plus "Other" used throughout this
         workshop), with a single count column totaling incidents across the full 2022–2026 window.{" "}
+        <strong>The data: </strong>
         <a href={`${GITHUB_RAW}/data/exercise_1.csv`} target="_blank" rel="noopener noreferrer">
           data/exercise_1.csv
         </a>{" "}
-        (opens the raw file, ready to copy).
+
       </p>
       <h3>Steps</h3>
       <ol>
         <li>
-          Start a new chart and go to <strong>Upload Data:</strong> paste the summary table. One row per type, one
-          count column.
+          Start a new chart and go to <strong>Upload Data:</strong> paste the summary table.
           <img className="step-screenshot" src={step1_1} alt="Datawrapper's Upload Data screen with the Exercise 1 summary table pasted in" />
         </li>
         <li>
@@ -96,7 +90,7 @@ export default function Home({ onNavigate }) {
         </li>
         <li>
           <strong>Visualize:</strong> choose <strong>Bar Chart</strong> from the chart-type grid, then switch it to
-          a horizontal bar. Incident-type labels like "Property Destruction" clip in a vertical layout.
+          a horizontal bar.
         </li>
         <li>
           Write a title that states the finding readers should take from the chart.
@@ -108,7 +102,7 @@ export default function Home({ onNavigate }) {
           <img className="step-screenshot" src={step1_5} alt="Datawrapper's Refine tab with one bar set to an accent color and the rest left neutral" />
         </li>
         <li>
-          Click the <strong>Annotate</strong> tab to add a subtitle, data credits, and byline. The subtitle should explain what the chart shows, and the data credits should link WUPD Crime Log page. The byline should include your name and publication.
+          Click the <strong>Annotate</strong> tab to add data credits and a byline. The data credits should link WUPD Crime Log page. The byline should include your name and publication.
           <img className="step-screenshot" src={step1_6} alt="Datawrapper's Annotate tab with the subtitle, data credits, and byline fields filled in" />
         </li>
         <li>
@@ -125,7 +119,7 @@ export default function Home({ onNavigate }) {
         title="Larceny reports account for more than half of WUPD's five-year log"
         ariaLabel="Bar Chart"
         src="https://datawrapper.dwcdn.net/mTBDc/3/"
-        height="400"
+        height="800"
       />
 
       <h2 id={sub("exercise-2").id}>
@@ -143,10 +137,11 @@ export default function Home({ onNavigate }) {
       <p>
         A grid of year (2022–2026) by incident type, each cell a count, the same shape as a pivot table, ready to
         paste in.{" "}
+        <strong>The data: </strong>
         <a href={`${GITHUB_RAW}/data/exercise_2.csv`} target="_blank" rel="noopener noreferrer">
           data/exercise_2.csv
         </a>{" "}
-        (opens the raw file, ready to copy).
+
       </p>
       <h3>Steps</h3>
       <ol>
@@ -163,10 +158,8 @@ export default function Home({ onNavigate }) {
           <strong>Multiple Lines Chart</strong>, with one line per top incident type.
         </li>
         <li>
-          For the table: open the <strong>Refine</strong> tab, click each incident-type column, and check "Show as
-          heatmap" in that column's settings. It's a per-column option, not a chart-wide switch, so it has to be
-          turned on once for each column. For the line chart: label lines directly rather than relying on a legend.
-          <img className="step-screenshot" src={step2_4} alt="Datawrapper's Refine tab with 'Show as heatmap' checked for one incident-type column" />
+          For the table: open the <strong>Refine</strong> tab, click "Activate Heatmap." For the line chart: label lines directly rather than relying on a legend.
+          <img className="step-screenshot" src={step2_4} alt="Datawrapper's Refine tab with 'Show as heatmap.'" />
         </li>
         <li>
           Still in Visualize, open the <strong>Annotate</strong> tab: flag the current year as partial as it hasn't
@@ -178,8 +171,7 @@ export default function Home({ onNavigate }) {
         </li>
       </ol>
       <p className="checkpoint">
-        A reader can find, at a glance, which crime type is rising, which is flat, and which is falling, with the
-        current year clearly marked as in-progress.
+        A reader can find, at a glance, which crime type is rising, which is flat, and which is falling.
       </p>
       <h2>Finished chart</h2>
       <DatawrapperEmbed
@@ -187,7 +179,8 @@ export default function Home({ onNavigate }) {
         title="Larceny remains the most common crime reported to WUPD"
         ariaLabel="Table"
         src="https://datawrapper.dwcdn.net/ypYJb/2/"
-        height="355"
+        height="500"
+        width="100%"
       />
 
       <h2 id={sub("exercise-3").id}>
@@ -199,24 +192,24 @@ export default function Home({ onNavigate }) {
       </p>
       <p>
         The ten locations with the most incidents since 2022, ranked against each other year by year. A bump
-        chart, built as a line chart with the vertical axis reversed so rank 1 sits at the top. No addresses, no
-        geocoding, no map.
+        chart, built as a line chart with the vertical axis reversed so rank 1 sits at the top.
       </p>
       <h3>Data needed</h3>
       <p>
         One row per year (2022–2026), one column per each of the ten highest-volume locations, with each cell
         holding that location's rank that year among just those ten: 1 for the most incidents that year, 10 for
         the fewest. Ties get the same rank.{" "}
+        <strong>The data: </strong>
         <a href={`${GITHUB_RAW}/data/exercise_3.csv`} target="_blank" rel="noopener noreferrer">
           data/exercise_3.csv
         </a>{" "}
-        (opens the raw file, ready to copy).
+
       </p>
       <h3>Steps</h3>
       <ol>
         <li>
           <strong>Upload Data:</strong> paste the year-by-location rank table. Rows are years (2022–2026, five
-          rows), columns are the ten locations, and every value is a rank from 1 to 10, never a raw incident count.
+          rows), columns are the ten locations, and every value is a rank from 1 to 10, not as a raw incident count.
           <img className="step-screenshot" src={step3_1} alt="Datawrapper's Upload Data screen with the year-by-location rank table pasted in" />
         </li>
         <li>
@@ -260,13 +253,7 @@ export default function Home({ onNavigate }) {
           <img className="step-screenshot" src={step3_8} alt="Datawrapper's Refine tab, Appearance section, with the label margin increased" />
         </li>
         <li>
-          Click the <strong>Annotate</strong> tab and add:
-          <br />
-          Title: "Danforth University Center became WUPD's busiest location almost overnight"
-          <br />
-          Subtitle: "It ranked near the middle in 2022. Athletic Complex, once tied for first, fell to last."
-          <br />
-          Also add data credits linking the WUPD Crime Log page, a byline, and a short footer note that 2026 is
+          Click the <strong>Annotate</strong> tab and add a chart title. Also add data credits linking the WUPD Crime Log page, a byline, and a short footer note that 2026 is
           partial and its rank could still shift before the year ends.
         </li>
         <li>

@@ -23,20 +23,18 @@ export default function DataCleaning() {
       </p>
       <div className="link-box">
         <span className="icon">📄</span>
-        <span>
-          Cleaned CSV (<code className="mono">cleaned.csv</code>):
-        </span>
+        <span> Cleaned CSV:</span>
         <a
           href="https://raw.githubusercontent.com/emlorraine/studlife-visualization-training/main/data/cleaned.csv"
           target="_blank"
           rel="noopener noreferrer"
         >
-          data/cleaned.csv (raw file)
+          data/cleaned.csv
         </a>
       </div>
       <div className="link-box">
         <span className="icon">🔗</span>
-        <span>Original source:</span>
+        <span> Original source: </span>
         <a href="https://police.wustl.edu/clery-reports-log/crime-log/" target="_blank" rel="noopener noreferrer">
           police.wustl.edu/clery-reports-log/crime-log
         </a>
@@ -46,14 +44,13 @@ export default function DataCleaning() {
         {sub("data-acquisition").title}
       </h2>
       <p>
-        While WUPD has a spreadsheet available for download, it isn't complete. The public log is, however, so I
-        wrote a small script that visited each page on its own. From every entry on every page, it pulled the same five pieces of
+        While WUPD has a spreadsheet available for download, the runnings log on their site contained more entries so I
+        wrote a small script that scraped that page instead. From every entry on every page, it pulled the same five pieces of
         information: when the incident was reported, when it actually occurred, what type of incident it was, where
         it happened, and a short synopsis.
       </p>
       <CodeDisclosure
         summary="View the scraping script (bash)"
-        note="This is a representative version of the orchestration script: the outer loop that fetches each page and stores the data on each page."
         code={SCRAPE_SCRIPT}
       />
 
@@ -93,17 +90,18 @@ export default function DataCleaning() {
       </h2>
       <p>
         None of the three exercises require you to clean any data yourself. That work is already reflected in the
-        linked CSVs. If you want to replicate it from scratch, here's exactly what happens between the cleaned CSV
+        linked CSVs. If you want to replicate it from scratch, here's what happens between the cleaned CSV
         and each exercise's summary table, done in Google Sheets rather than code.
       </p>
       <p>
-        Start by filtering the cleaned log down to the 2022–2026 window, excluding partial 2019 and
-        2020–2021 because the pandemic meant students were not on campus. Every exercise below builds from that filtered slice.
+        Start by filtering the cleaned log down to the 2022–2026 window, setting aside partial 2019 data and the 2020–2021 pandemic years.
+        Including those years risks distorting the analysis because remote learning drastically reduced student density on campus.
+        Because campus activity was fundamentally anomalous during that period, using those numbers creates an unfair baseline that skews direct comparisons against typical academic years.
       </p>
       <ul>
         <li>
           <strong>Exercise 1 (bar chart):</strong> use <code className="mono">COUNTIFS</code> to total incidents by
-          bucketed type across the full 2022–2026 window. One row per type, one count column.
+          bucketed type across the full 2022–2026 window. Ensure there is one row per type with one count column.
         </li>
         <li>
           <strong>Exercise 2 (timeline / heat map):</strong> build a pivot table with year as rows and bucketed

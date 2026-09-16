@@ -22,7 +22,7 @@ export const CHAPTERS = [
       { id: "background", title: "Background" },
       { id: "data-acquisition", title: "Data acquisition" },
       { id: "cleaning", title: "Cleaning" },
-      { id: "sheets-prep", title: "Preparing the numbers in Google Sheets" },
+      { id: "sheets-prep", title: "Formatting the data" },
     ],
   },
 ];
@@ -39,7 +39,7 @@ export const MERGE_ROWS = [
   {
     column: "Incident Type",
     foundAs: '"Trespassing" (pre-2024) / "Trespass" (2024–)',
-    mergedInto: "Trespass",
+    mergedInto: "Trespassing",
   },
   {
     column: "Location",
@@ -53,7 +53,7 @@ export const MERGE_ROWS = [
   },
 ];
 
-export const SCRAPE_SCRIPT = `#!/usr/bin/env bash
+export const SCRAPE_SCRIPT = `
 # scrape_crime_log.sh: walk WUPD's public Crime Log, one page at a time
 set -euo pipefail
 

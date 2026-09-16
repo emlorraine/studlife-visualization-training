@@ -1,0 +1,8 @@
+COUNTA of Incident_Type_Clean,Incident_Type_Bucketed,,,,,,,,,
+Year,Assault,Burglary,Fraud,Harassment,Larceny,Other,Property Destruction,Stolen Vehicle,Trespass,Grand Total
+2022,,5,,,68,15,,5,,93
+2023,5,2,,,82,13,,1,,103
+2024,7,,7,21,79,10,17,14,17,172
+2025,3,1,14,14,80,9,16,9,51,197
+2026,2,3,8,13,66,19,7,9,44,171
+Grand Total,17,11,29,48,375,66,40,38,112,736

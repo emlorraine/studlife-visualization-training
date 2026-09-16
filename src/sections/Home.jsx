@@ -292,18 +292,12 @@ export default function Home({ onNavigate }) {
         {sub("together").title}
       </h2>
       <p>
-        Three embed codes aren't a story yet. They're three separate charts on a page. What turns them into one
-        interactive is the narration between them: a sentence or two, right before each embed, saying what the last
-        chart couldn't tell you. The bar chart raises <em>what</em> gets reported most. The timeline raises{" "}
-        <em>when</em>, and teaches the reader to be skeptical of a trend line before trusting it. The bump chart
-        answers <em>which locations</em>, showing whether the same place stays WUPD's biggest problem or the title
-        keeps changing hands, without ever needing to place a pin on a map.
-      </p>
-      <p>
-        Before publishing, I'd still need: the final Google Sheet link with the 2022–2026 summary tables above; the
-        cleaned CSV link and a decision on where it's hosted; and a sign-off from WUPD or the Clery compliance
-        office on how the "what this data does and doesn't prove" caveat is worded, since the trend chart touches
-        records they own.
+        These are just the visuals. The story still needs reporting. In building these, this data sparked a few questions I'd report on before publishing. Those include:
+        - What is the methodology for how WUPD records incidents reported to them?
+        - How complete and accurate are the records for each location and year?
+        - Are there any external factors that could explain sudden changes in reported incidents at specific locations?
+        - How do these findings compare to other universities or national trends in campus crime reporting?
+        - How significantly do underreported or misclassified incidents distort the data?
       </p>
     </article>
   );

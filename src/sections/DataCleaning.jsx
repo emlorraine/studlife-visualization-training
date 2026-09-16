@@ -46,22 +46,15 @@ export default function DataCleaning() {
         {sub("data-acquisition").title}
       </h2>
       <p>
-        WUPD's crime log isn't a downloadable file. It's a public webpage with 91 pages of entries. So I wrote a
-        small program that visited each page on its own, one at a time, pausing about a second in between so it
+        While WUPD has a spreadsheet available for download, it isn't complete. The public log is, however, so I
+        wrote a small script that visited each page on its own, one at a time, pausing about a second in between so it
         wasn't hammering the university's server. From every entry on every page, it pulled the same five pieces of
         information: when the incident was reported, when it actually occurred, what type of incident it was, where
         it happened, and a short synopsis.
       </p>
-      <p>
-        The important detail is <em>how</em> it read each entry. Rather than grabbing a paragraph of text and
-        guessing which words meant what, the program looked in the exact same spot on the page for each field,
-        every time, because WUPD's page lays each incident out the same way, field by field. That's why the
-        categories in this dataset are exact matches to what WUPD wrote, rather than my best guess at parsing a
-        sentence.
-      </p>
       <CodeDisclosure
         summary="View the scraping script (bash)"
-        note="This is a representative version of the orchestration script: the outer loop that fetches each page and waits between requests. It calls a short Python helper (using only the standard library, no third-party packages) to pull the five fields out of each page's fixed layout. That parsing step isn't shown here."
+        note="This is a representative version of the orchestration script: the outer loop that fetches each page and stores the data on each page."
         code={SCRAPE_SCRIPT}
       />
 
@@ -69,15 +62,8 @@ export default function DataCleaning() {
         {sub("cleaning").title}
       </h2>
       <p>
-        Counting up the raw <code className="mono">Incident_Type</code> values turned up something that would
-        quietly break any chart built straight from the source: WUPD renamed some of its own categories partway
-        through the seven-year span. Every "Trespassing" record predates 2024; every "Trespass" record is from 2024
-        or later. Chart those as two separate bars and you undercount trespassing with no obvious reason why.
-      </p>
-      <p>
-        The fix, in a spreadsheet, is a find-and-replace, but it only works if you go looking for it first. I
-        checked every column that repeats a category (incident type and location) for exact-duplicate meanings
-        spelled two different ways:
+        Once the raw data was downloaded, I cleaned it up in a few ways to make the data more consistent and easier to work with.
+        Those changes are reflected in the cleaned CSV, which is what the exercises below use. The cleaning steps included standardizing location and incident values. For example:
       </p>
       <div className="table-wrap">
         <table>
@@ -102,20 +88,6 @@ export default function DataCleaning() {
           </tbody>
         </table>
       </div>
-      <p>
-        One more cleanup call shapes how the data gets used later, without changing the underlying rows: the eight
-        most common incident types cover 91% of all records, so the long tail of one-off categories (stalking, a
-        handful of security memos, and similar) gets grouped into a single "Other" bucket for charting.
-      </p>
-      <Admonition kind="caution" title="What I'm upfront about">
-        <p>
-          The earliest years in the log (2019–2020) look far quieter than recent ones, and I can't fully separate an
-          increase from incomplete retroactive logging in the site's early years. Thirteen report numbers appear
-          twice in the source log (26 rows), each with two distinct internal IDs, a numbering quirk on WUPD's end,
-          not a scraping error, so I kept both rows. 28 records have no disposition listed at all. None of this gets
-          hidden in the cleaning step. It gets carried forward as a caveat wherever it's relevant to a chart.
-        </p>
-      </Admonition>
 
       <h2 id={sub("sheets-prep").id}>
         {sub("sheets-prep").title}
@@ -126,10 +98,8 @@ export default function DataCleaning() {
         and each exercise's summary table, done in Google Sheets rather than code.
       </p>
       <p>
-        Start by filtering the cleaned log down to the 2022–2026 window, excluding partial 2019 and pandemic-era
-        2020–2021. Every exercise below builds from that filtered slice. For Exercises 1 and 2, also recompute the
-        top-8-types "Other" bucket for this window specifically, since the top categories in 2022–2026 aren't
-        guaranteed to match the full 2019–2026 set exactly.
+        Start by filtering the cleaned log down to the 2022–2026 window, excluding partial 2019 and
+        2020–2021 because the pandemic meant students were not on campus. Every exercise below builds from that filtered slice.
       </p>
       <ul>
         <li>
@@ -144,7 +114,7 @@ export default function DataCleaning() {
           <strong>Exercise 3 (bump chart):</strong> build a location-by-year pivot, sum each location's row for a
           2022–2026 total, and keep the ten locations with the highest totals. For each year, including partial
           2026, use <code className="mono">RANK()</code> to rank just those ten locations against each other by
-          that year's count, 1 being the most incidents. No address or geocoding involved.
+          that year's count, 1 being the most incidents.
         </li>
       </ul>
       <p>

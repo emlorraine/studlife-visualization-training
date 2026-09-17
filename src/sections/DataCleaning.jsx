@@ -7,22 +7,15 @@ export default function DataCleaning() {
   return (
     <article className="chapter">
       <h1>Data &amp; cleaning</h1>
-      <p className="chapter-dek">
-        Before anyone opens Datawrapper, the data has to be trustworthy. Here's what I started with, where it came
-        from, and what I did to clean it up. This is written for anyone on the team, not just the person who wrote
-        the scraper.
-      </p>
-
       <h2 id={sub("background").id}>
         {sub("background").title}
       </h2>
       <p>
-        905 incidents from WUPD's public Crime Log, one of the disclosures the university publishes under the
-        federal Clery Act. It spans August 27, 2019 through September 8, 2026, and was scraped in September 2026.
+        The federal Clery Act requires universities to publish an annual crime log. This dataset gathers 905 incidents scraped from WUPD's public log, spanning from August 2019 through September 2026.
       </p>
       <div className="link-box">
         <span className="icon">📄</span>
-        <span> Cleaned CSV:</span>
+        <span>Cleaned CSV:</span>
         <a
           href="https://raw.githubusercontent.com/emlorraine/studlife-visualization-training/main/data/cleaned.csv"
           target="_blank"
@@ -33,7 +26,7 @@ export default function DataCleaning() {
       </div>
       <div className="link-box">
         <span className="icon">🔗</span>
-        <span> Original source: </span>
+        <span>Original source:</span>
         <a href="https://police.wustl.edu/clery-reports-log/crime-log/" target="_blank" rel="noopener noreferrer">
           police.wustl.edu/clery-reports-log/crime-log
         </a>
@@ -43,10 +36,7 @@ export default function DataCleaning() {
         {sub("data-acquisition").title}
       </h2>
       <p>
-        While WUPD has a spreadsheet available for download, the runnings log on their site contained more entries so I
-        wrote a small script that scraped that page instead. From every entry on every page, it pulled the same five pieces of
-        information: when the incident was reported, when it actually occurred, what type of incident it was, where
-        it happened, and a short synopsis.
+        While WUPD offers a downloadable spreadsheet, their site's online log contained more entries, so I scraped those web pages directly. For each entry, I extracted five main fields: report date, occurrence date, incident type, location, and a short synopsis.
       </p>
       <CodeDisclosure
         summary="View the scraping script (bash)"
@@ -57,8 +47,7 @@ export default function DataCleaning() {
         {sub("cleaning").title}
       </h2>
       <p>
-        Once the raw data was downloaded, I cleaned it up in a few ways to make the data more consistent and easier to work with.
-        Those changes are reflected in the cleaned CSV, which is what the exercises below use. The cleaning steps included standardizing location and incident values. For example:
+        After downloading the raw data, I cleaned it up to make the values consistent and easy to work with. These changes are reflected in the cleaned CSV used in the exercises below, primarily standardizing location names and incident types.
       </p>
       <div className="table-wrap">
         <table>
@@ -66,7 +55,7 @@ export default function DataCleaning() {
           <thead>
             <tr>
               <th>Column</th>
-              <th>Found as two values</th>
+              <th>Raw Values</th>
               <th>Merged into</th>
             </tr>
           </thead>
@@ -94,20 +83,19 @@ export default function DataCleaning() {
       </p>
       <p>
         Start by filtering the cleaned log down to the 2022–2026 window, setting aside partial 2019 data and the 2020–2021 pandemic years.
-        Including those years risks distorting the analysis because remote learning drastically reduced student density on campus.
-        Because campus activity was fundamentally anomalous during that period, using those numbers creates an unfair baseline that skews direct comparisons against typical academic years.
+        Including those years would distort the analysis because remote learning drastically reduced on-campus density, making those numbers an inaccurate baseline for typical academic years.
       </p>
       <ul>
         <li>
-          <strong>Exercise 1 (bar chart):</strong> use <code className="mono">COUNTIFS</code> to total incidents by
+          <strong>Exercise 1 (bar chart)—</strong> use <code className="mono">COUNTIFS</code> to total incidents by
           bucketed type across the full 2022–2026 window. Ensure there is one row per type with one count column.
         </li>
         <li>
-          <strong>Exercise 2 (timeline / heat map):</strong> build a pivot table with year as rows and bucketed
+          <strong>Exercise 2 (timeline / heat map)—</strong> build a pivot table with year as rows and bucketed
           incident type as columns, counting incidents in each cell.
         </li>
         <li>
-          <strong>Exercise 3 (bump chart):</strong> build a location-by-year pivot, sum each location's row for a
+          <strong>Exercise 3 (bump chart)—</strong> build a location-by-year pivot, sum each location's row for a
           2022–2026 total, and keep the ten locations with the highest totals. For each year, including partial
           2026, use <code className="mono">RANK()</code> to rank just those ten locations against each other by
           that year's count, 1 being the most incidents.

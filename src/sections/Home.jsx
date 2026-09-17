@@ -33,13 +33,11 @@ export default function Home({ onNavigate }) {
       <Admonition kind="note" title="Before you start">
         <ul>
           <li>
-            A free <a href="https://www.datawrapper.de/" target="_blank" rel="noopener noreferrer">Datawrapper</a>{" "}
-            account for everyone building along.
+            A free <a href="https://www.datawrapper.de/" target="_blank" rel="noopener noreferrer">Datawrapper</a> account for anyone building along.
           </li>
-          <li>A spreadsheet tool: Google Sheets, Excel, or Numbers.</li>
+          <li>A spreadsheet tool such as Google Sheets, Excel, or Numbers.</li>
           <li>
-            The cleaned <code className="mono">cleaned.csv</code> dataset for reference and each exercise's data file, all in the GitHub
-            repo (linked below and in <LinkJump chapter="data" onNavigate={onNavigate}>Data &amp; Cleaning</LinkJump>).
+            The cleaned <code className="mono">cleaned.csv</code> dataset and each exercise's data file in the GitHub repo (linked below and in <LinkJump chapter="data" onNavigate={onNavigate}>Data &amp; Cleaning</LinkJump>).
           </li>
         </ul>
       </Admonition>
@@ -48,15 +46,14 @@ export default function Home({ onNavigate }) {
         {sub("pitch-statement").title}
       </h2>
       <p>
-        <strong>I'm proposing an interactive story built from WUPD's Clery Act crime log</strong>. Each interactive built for the story will answer a question the last one raises, walking a campus reader from "what
-        gets reported" to "when" to "which locations."
+        <strong>I'm proposing an interactive story built from WUPD's Clery Act crime log</strong>. Each interactive answers a question raised by the previous one, guiding readers from "what gets reported" to "when" and "where."
       </p>
       <p>
-        The data behind this is already handled. See{" "}
+        The underlying data is already prepared. See{" "}
         <LinkJump chapter="data" subsection="background" onNavigate={onNavigate}>
           Data &amp; Cleaning
         </LinkJump>{" "}
-        for how I scraped and deduped it.
+        to review how it was scraped and cleaned.
       </p>
 
       <h2 id={sub("exercise-1").id}>
@@ -66,43 +63,33 @@ export default function Home({ onNavigate }) {
         "What gets reported to WUPD more than anything else, and how does everything else compare?"
       </p>
       <p>
-        Let's start with a simple bar chart to tally the incidents reported by type. This is the control group for the two builds
-        after it.
+        We'll start with a simple bar chart to tally reported incidents by type. This serves as a baseline for the next two charts.
       </p>
       <h3>Data needed</h3>
       <p>
-        A summary table: one row per bucketed incident type (the same eight types plus "Other" used throughout this
-        workshop), with a single count column totaling incidents across the full 2022–2026 window.{" "}
+        A summary table: one row per incident category (the eight core types plus "Other"), with a single column totaling incidents across the 2022–2026 window.{" "}
         <strong>The data: </strong>
         <a href={`${GITHUB_RAW}/data/exercise_1.csv`} target="_blank" rel="noopener noreferrer">
           data/exercise_1.csv
-        </a>{" "}
-
+        </a>
       </p>
       <h3>Steps</h3>
       <ol>
         <li>
-          Start a new chart and go to <strong>Upload Data:</strong> paste the summary table.
+          Start a new chart and navigate to <strong>Upload Data</strong> to paste the summary table.
           <img className="step-screenshot" src={step1_1} alt="Datawrapper's Upload Data screen with the Exercise 1 summary table pasted in" />
         </li>
         <li>
-          <strong>Check &amp; Describe:</strong> confirm the count column reads as a number.
+          <strong>Check &amp; Describe:</strong> confirm the count column formats as a number.
         </li>
         <li>
-          <strong>Visualize:</strong> choose <strong>Bar Chart</strong> from the chart-type grid, then switch it to
-          a horizontal bar.
+          <strong>Visualize:</strong> select <strong>Bar Chart</strong> from the grid of chart options.
         </li>
         <li>
-          Write a title that states the finding readers should take from the chart.
-        </li>
-        <li>
-          Refine the appearance. Click "Refine" to modify the colors and other settings. For visualizations like
-          this, use one neutral color for every bar, one accent color for whichever category the finding is
-          actually about.
+          Refine the appearance. Under "Refine," adjust colors so all neutral bars share one shade, using a single accent color for the focus category.
           <img className="step-screenshot" src={step1_5} alt="Datawrapper's Refine tab with one bar set to an accent color and the rest left neutral" />
-        </li>
-        <li>
-          Click the <strong>Annotate</strong> tab to add data credits and a byline. The data credits should link WUPD Crime Log page. The byline should include your name and publication.
+        </li><li>
+          Open the <strong>Annotate</strong> tab to write a takeaway headline that summarizes the core finding. Also add data credits and a byline. Link the data credits to the WUPD Crime Log page, and include your name and publication in the byline.
           <img className="step-screenshot" src={step1_6} alt="Datawrapper's Annotate tab with the subtitle, data credits, and byline fields filled in" />
         </li>
         <li>
@@ -110,8 +97,7 @@ export default function Home({ onNavigate }) {
         </li>
       </ol>
       <p className="checkpoint">
-        Bars sorted tallest to shortest, one category visually distinct, a title that states the finding rather
-        than describing the axes.
+        Bars sorted highest to lowest, one highlighted category, and a title that states the core finding rather than describing the axes.
       </p>
       <h2>Finished chart</h2>
       <DatawrapperEmbed
@@ -126,44 +112,38 @@ export default function Home({ onNavigate }) {
         {sub("exercise-2").title}
       </h2>
       <p className="question">
-        "Is WashU trending toward more incidents than past years, fewer, or about the same? Does that trend look
-        different by crime type?"
+        "Is WashU trending toward more incidents than past years, fewer, or about the same? Does that trend look different by crime type?"
       </p>
       <p>
-        This is a step up in complexity. Instead of one total, it's several years broken out by category, which is
-        exactly the shape a timeline or a year-by-type heat map is built for.
+        Next, we'll break down incident counts across several years by category, a format built for a timeline or a year-by-type heat map.
       </p>
       <h3>Data needed</h3>
       <p>
-        A grid of year (2022–2026) by incident type, each cell a count, the same shape as a pivot table, ready to
-        paste in.{" "}
+        A grid tracking years (2022–2026) by incident type, formatted like a pivot table with counts in each cell.{" "}
         <strong>The data: </strong>
         <a href={`${GITHUB_RAW}/data/exercise_2.csv`} target="_blank" rel="noopener noreferrer">
           data/exercise_2.csv
-        </a>{" "}
-
+        </a>
       </p>
       <h3>Steps</h3>
       <ol>
         <li>
-          <strong>Upload Data:</strong> paste the year-by-type grid, year as columns and incident type as rows.
+          <strong>Upload Data:</strong> paste the year-by-type grid with years as columns and incident types as rows.
           <img className="step-screenshot" src={step2_1} alt="Datawrapper's Upload Data screen with the year-by-type grid pasted in" />
         </li>
         <li>
-          <strong>Check &amp; Describe:</strong> confirm the year columns read as numbers, not text.
+          <strong>Check &amp; Describe:</strong> confirm the year columns parse as numbers rather than text.
           <img className="step-screenshot" src={step2_2} alt="Datawrapper's Check & Describe screen confirming the year columns are read as numbers" />
         </li>
         <li>
-          <strong>Visualize:</strong> try two chart types and see which reads faster: <strong>Table</strong>, or{" "}
-          <strong>Multiple Lines Chart</strong>, with one line per top incident type.
+          <strong>Visualize:</strong> compare two chart types to see which reads faster: a <strong>Table</strong> or a <strong>Multiple Lines Chart</strong> featuring top incident types.
         </li>
         <li>
-          For the table: open the <strong>Refine</strong> tab, click "Activate Heatmap." For the line chart: label lines directly rather than relying on a legend.
+          For a table, select "Activate Heatmap" under the <strong>Refine</strong> tab. For a line chart, label lines directly instead of using a legend.
           <img className="step-screenshot" src={step2_4} alt="Datawrapper's Refine tab with 'Show as heatmap.'" />
         </li>
         <li>
-          Still in Visualize, open the <strong>Annotate</strong> tab: flag the current year as partial as it hasn't
-          finished yet. Also add a title, the appropriate data credits and byline as before.
+          In the <strong>Annotate</strong> tab, note that the current year is partial. Add an informative title, data credits, and your byline.
           <img className="step-screenshot" src={step2_5} alt="Datawrapper's Annotate tab flagging 2026 as a partial year" />
         </li>
         <li>
@@ -171,7 +151,7 @@ export default function Home({ onNavigate }) {
         </li>
       </ol>
       <p className="checkpoint">
-        A reader can find, at a glance, which crime type is rising, which is flat, and which is falling.
+        Readers can immediately spot which crime types are rising, falling, or staying flat.
       </p>
       <h2>Finished chart</h2>
       <DatawrapperEmbed
@@ -179,92 +159,69 @@ export default function Home({ onNavigate }) {
         title="Larceny remains the most common crime reported to WUPD"
         ariaLabel="Table"
         src="https://datawrapper.dwcdn.net/ypYJb/2/"
-        height="500"
-        width="100%"
+        height="400px"
+        width="110%"
       />
 
       <h2 id={sub("exercise-3").id}>
         {sub("exercise-3").title}
       </h2>
       <p className="question">
-        "Has the same place been WUPD's biggest hot spot the whole time, or does the answer change from year to
-        year?"
+        "Has the same location remained WUPD's primary hot spot, or does the top location shift year to year?"
       </p>
       <p>
-        The ten locations with the most incidents since 2022, ranked against each other year by year. A bump
-        chart, built as a line chart with the vertical axis reversed so rank 1 sits at the top.
+        We'll rank the ten highest-volume locations year by year using a bump chart, which is a line chart with a reversed vertical axis so rank 1 sits at the top.
       </p>
       <h3>Data needed</h3>
       <p>
-        One row per year (2022–2026), one column per each of the ten highest-volume locations, with each cell
-        holding that location's rank that year among just those ten: 1 for the most incidents that year, 10 for
-        the fewest. Ties get the same rank.{" "}
+        One row per year (2022–2026) and one column for each of the top ten locations. Each cell holds that location's annual rank from 1 (highest count) to 10 (lowest count), with ties sharing a rank.{" "}
         <strong>The data: </strong>
         <a href={`${GITHUB_RAW}/data/exercise_3.csv`} target="_blank" rel="noopener noreferrer">
           data/exercise_3.csv
-        </a>{" "}
-
+        </a>
       </p>
       <h3>Steps</h3>
       <ol>
         <li>
-          <strong>Upload Data:</strong> paste the year-by-location rank table. Rows are years (2022–2026, five
-          rows), columns are the ten locations, and every value is a rank from 1 to 10, not as a raw incident count.
+          <strong>Upload Data:</strong> paste the year-by-location rank table (5 rows for years, 10 columns for locations). Values must be ranks from 1 to 10, not raw incident counts.
           <img className="step-screenshot" src={step3_1} alt="Datawrapper's Upload Data screen with the year-by-location rank table pasted in" />
         </li>
         <li>
-          <strong>Check &amp; Describe:</strong> confirm every rank column reads as a number, not text.
+          <strong>Check &amp; Describe:</strong> confirm every rank column parses as a number.
         </li>
         <li>
-          <strong>Visualize:</strong> choose <strong>Lines</strong> from the chart-type grid.
+          <strong>Visualize:</strong> select <strong>Lines</strong> from the chart-type grid.
           <img className="step-screenshot" src={step3_3} alt="Datawrapper's chart-type grid with Lines selected" />
         </li>
         <li>
-          Open the <strong>Refine</strong> tab, find "Vertical axis," and in the Custom range field enter{" "}
-          <code className="mono">10.5,0.5</code>. That reverses the axis so rank 1 sits at the top instead of the
-          bottom, which is what makes this read as a ranking. If the chart comes out upside down, with rank 10 at
-          the top, swap the order to <code className="mono">0.5,10.5</code>.
+          In the <strong>Refine</strong> tab under "Vertical axis," enter <code className="mono">10.5,0.5</code> in the Custom range field. This reverses the axis so rank 1 displays at the top.
           <img className="step-screenshot" src={step3_4} alt="Datawrapper's Refine tab with the vertical axis custom range set to 10.5,0.5" />
         </li>
         <li>
-          In the same Refine tab, find the <strong>Lines</strong> section and set Interpolation to{" "}
-          <strong>Curved</strong>. This chart has ten lines crossing each other constantly, since the busiest
-          location changes hands almost every year: curved lines make those crossings easier to follow than sharp
-          straight-line intersections.
+          In the <strong>Lines</strong> section, set Interpolation to <strong>Curved</strong> to make intersecting paths easier to follow.
           <img className="step-screenshot" src={step3_5} alt="Datawrapper's Lines section with Interpolation set to Curved" />
         </li>
         <li>
-          Still in the <strong>Lines</strong> section, turn on <strong>"Show symbols"</strong> and set it to appear
-          on <strong>every data point</strong>, not just the first and last. Without this, a curved line only implies
-          each year's rank; the circle at every point marks it exactly, which matters here since five years means
-          five ranks to read off per location.
+          Enable <strong>"Show symbols"</strong> for <strong>every data point</strong>. This places an explicit marker at each annual rank.
           <img className="step-screenshot" src={step3_6} alt="Datawrapper's Lines section with 'Show symbols' turned on for every data point" />
         </li>
         <li>
-          Still in Lines, set every line's base color to a light gray first. Then override two lines with their own
-          strong color: <strong>Danforth University Center</strong>, since it rises from mid-pack to rank 1 by
-          2026, and <strong>Athletic Complex</strong>, since it falls from tied for 1st in 2022 to last by 2024 and
-          stays there. Those two carry the finding; the other eight stay gray so they don't compete for attention.
+          Set all lines to a light gray base color first. Then highlight two key locations: <strong>Danforth University Center</strong> (rising to rank 1 by 2026) and <strong>Athletic Complex</strong> (dropping to last place). Keep the remaining eight gray.
           <img className="step-screenshot" src={step3_7} alt="Datawrapper's Lines section with every line light gray except Danforth University Center and Athletic Complex" />
         </li>
         <li>
-          Location names run long ("Danforth University Center," "Anheuser-Busch Hall"). If labels get cut off,
-          scroll to the bottom of the Refine tab, under Appearance, and increase the label margin.
+          If long location names clip, navigate to Appearance at the bottom of the Refine tab and expand the label margin.
           <img className="step-screenshot" src={step3_8} alt="Datawrapper's Refine tab, Appearance section, with the label margin increased" />
         </li>
         <li>
-          Click the <strong>Annotate</strong> tab and add a chart title. Also add data credits linking the WUPD Crime Log page, a byline, and a short footer note that 2026 is
-          partial and its rank could still shift before the year ends.
+          In the <strong>Annotate</strong> tab, add a title, data credits linking to the WUPD Crime Log page, your byline, and a note stating that 2026 data is partial.
         </li>
         <li>
           <strong>Publish &amp; Embed.</strong>
         </li>
       </ol>
       <p className="checkpoint">
-        A reader can pick any one line and trace it from 2022 to 2026, and see exactly which year, if any, that
-        location was WUPD's most-cited, with the gray-vs-colored lines making Danforth University Center's rise and
-        Athletic Complex's fall obvious at a glance. Check the chart on a mobile preview too, since line labels move
-        to the top of the chart on small screens.
+        Readers can trace any location from 2022 to 2026 to see when it peaked, with color highlights drawing immediate attention to the Danforth University Center's rise and Athletic Complex's decline. Always check the mobile preview, as line labels stack on smaller screens.
       </p>
       <h2>Finished chart</h2>
       <DatawrapperEmbed
@@ -279,13 +236,15 @@ export default function Home({ onNavigate }) {
         {sub("together").title}
       </h2>
       <p>
-        These are just the visuals. The story still needs reporting. In building these, this data sparked a few questions I'd report on before publishing. Those include:
-        - What is the methodology for how WUPD records incidents reported to them?
-        - How complete and accurate are the records for each location and year?
-        - Are there any external factors that could explain sudden changes in reported incidents at specific locations?
-        - How do these findings compare to other universities or national trends in campus crime reporting?
-        - How significantly do underreported or misclassified incidents distort the data?
+        These charts provide the visual foundation, but full story reporting requires additional context. Questions to investigate before publishing could include:
       </p>
+      <ul>
+        <li>What methodology does WUPD use to record reported incidents?</li>
+        <li>How complete and accurate are location records year over year?</li>
+        <li>What external factors might explain sudden volume shifts at specific locations?</li>
+        <li>How do these trends compare to peer institutions or national campus crime reporting?</li>
+        <li>How significantly do underreported or misclassified incidents affect the data?</li>
+      </ul>
     </article>
   );
 }

@@ -32,7 +32,7 @@ export default function DatawrapperEmbed({ id, title, ariaLabel, src, height }) 
     ensureResizeListener();
   }, []);
 
-  const html = `<iframe title="${title}" aria-label="${ariaLabel}" id="${id}" src="${src}" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="${height}" data-external="1"></iframe>`;
+  const html = `<iframe title="${title}" aria-label="${ariaLabel}" id="${id}" src="${src}" scrolling="no" frameborder="0" style="width: 0; min-width: 110% !important; border: none;" height="${height}" data-external="1"></iframe>`;
 
   return <div className="datawrapper-embed" dangerouslySetInnerHTML={{ __html: html }} />;
 }

@@ -27,10 +27,10 @@ export default function Home({ onNavigate }) {
     <article className="chapter">
       <h1>Building a Visual Story</h1>
       <p className="chapter-dek">
-        We're going to build three interactives (a bar chart, a timeline, and a bump chart) using <a href="https://police.wustl.edu/clery-reports-log/crime-log/">WUPD's Clery Report crime log</a>.
+        We're going to build three interactives (a bar chart, a heatmap, and a bump chart) using <a href="https://police.wustl.edu/clery-reports-log/crime-log/">WUPD's Clery Report crime log</a>.
       </p>
 
-      <Admonition kind="note" title="Before you start">
+      <Admonition kind="note" title="Before you start, please make sure you have the following ready:">
         <ul>
           <li>
             A free <a href="https://www.datawrapper.de/" target="_blank" rel="noopener noreferrer">Datawrapper</a> account for anyone building along.
@@ -115,7 +115,7 @@ export default function Home({ onNavigate }) {
         "Is WashU trending toward more incidents than past years, fewer, or about the same? Does that trend look different by crime type?"
       </p>
       <p>
-        Next, we'll break down incident counts across several years by category, a format built for a timeline or a year-by-type heat map.
+        Next, we'll break down incident counts across several years by category.
       </p>
       <h3>Data needed</h3>
       <p>
@@ -136,7 +136,7 @@ export default function Home({ onNavigate }) {
           <img className="step-screenshot" src={step2_2} alt="Datawrapper's Check & Describe screen confirming the year columns are read as numbers" />
         </li>
         <li>
-          <strong>Visualize:</strong> compare two chart types to see which reads faster: a <strong>Table</strong> or a <strong>Multiple Lines Chart</strong> featuring top incident types.
+          <strong>Visualize:</strong> compare two chart types to see which reads faster: a <strong>Table</strong> or a <strong>Multiple Lines Chart</strong> featuring top incident types. This exercise will use the table option.
         </li>
         <li>
           For a table, select "Activate Heatmap" under the <strong>Refine</strong> tab. For a line chart, label lines directly instead of using a legend.
